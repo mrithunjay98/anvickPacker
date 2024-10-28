@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avni Packer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* General Styles */
+        body { font-family: Arial, sans-serif; color: #333; line-height: 1.6; }
+        header, footer { background-color: #004080; color: #fff; text-align: center; padding: 1rem 0; }
+        .container { padding: 20px; max-width: 1100px; margin: auto; }
+        
+
+        
+        /* Navigation */
+        nav { text-align: center; background: rgb(203, 209, 205); padding: 0.3rem 0; }
+        nav a { color: #0a703d; margin: 0 1.5rem; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: #a72323; }
+
+        /* Sections */
+        section { padding: 4rem 0; }
+        h2 { margin-bottom: 1rem; font-size: 2.2rem; color: #004080; }
+
+        /* Specific Sections */
+        #home { background: url('images/hero.jpg') no-repeat center center/cover; color: rgb(26, 15, 129); padding: 8rem 0; text-align: center; }
+        #about, #services, #gallery, #contact { background-color: #f4f4f9; border-radius: 8px;  }
+
+        /* Gallery */
+        .gallery { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .gallery img { width: 200px; height: auto; border-radius: 8px; }
+
+      
+
+        /* Footer */
+        footer p { margin: 0; padding: 0rem 0; }
+
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav a { margin: 0 10px; }
+            .gallery img { width: 150px; }
+        }
+                .brand-name {
+                 display: flex;
+            font-family: 'Poppins', sans-serif; /* Font Family */
+            color: #e71757; /* Main text color */
+            font-weight: 900; /* Bold weight */
+            font-size: 4rem; /* Larger font size */
+            margin: 20px; /* Margin around the element */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
+            letter-spacing: 1px; /* Space between letters */
+            transition: all 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        /* Hover Effect */
+        .brand-name:hover {
+            color: #18d046; /* Change color on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        /* Image Styling */
+        .brand-image {
+            width: 150%; /* Set fixed width */
+            height: auto; /* Maintain aspect ratio */
+            margin-top: 20px; /* Space between text and image */
+        }
+        .customization-section {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+.gallery {
+    display: flex;
+    gap: 50px;
+}
+
+.gallery figure {
+    text-align: center;
+    max-width: 150px;
+}
+
+.gallery img {
+    width: 140%;
+    height: auto;
+}
+
+.gallery figcaption {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.section-title {
+    color: #004080;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.section-description {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 10px auto;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+.customization-features {
+    list-style-type: none;
+    padding: 0;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 15px auto;
+}
+
+.customization-features li {
+    margin: 10px 0;
+}
+
+.cta-message {
+    font-size: 1.1rem;
+    color: #004080;
+    margin-top: 20px;
+}
+        
+               .slider {
+            position: relative;
+            max-width: 1500px; /* Increased width for the slider */
+            height: auto; /* Fixed height for the slider */
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        /* Slide */
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%; /* Make slides fill the height of the slider */
+        }
+
+        /* Active slide */
+        .active {
+            display: block;
+        }
+
+        /* Image Styling */
+        .slide img {
+            width: 100%;
+            height: 100%; /* Make images fill the slider height */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        /* Navigation buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            padding: 10px;
+            background-color: rgba(43, 38, 38, 0.5);
+            border: none;
+            border-radius: 5px;
+            z-index: 1000; /* Ensure buttons are above images */
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+  .product-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding: 10px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 250px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Product Details */
+        .product-details {
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .product-title {
+            color: #1f2020;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 5px 0 10px;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #004080;
+            margin-top: 10px;
+        }
+         .features-list {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+            font-size: 1.1rem;
+            color: #333;
+        }
+      
+        .scrolling-text {
+            font-weight: bold;
+        display: inline-block;
+        white-space: nowrap;
+        padding: 5px 10px;
+        font-size: 16px;
+        color: #f5eaea;
+        background-color: #bc0e0e;
+        border-radius: 7px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        animation: scroll-left 20s linear infinite;
+    }
+
+    .scrolling-text:hover {
+        animation-play-state: paused; /* Pause on hover */
+    }
+
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+        .features-list li {
+         text-align: center;
+            margin: 10px 0;
+        }
+         .tagline {
+          text-align: center;
+            color: red;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 10px 0 20px;
+        }
+         .feature1 { text-decoration: underline;font-weight:bold;  } /* Red-orange */
+        .feature2 { text-decoration: underline; font-weight:bold; } /* Light blue */
+        .feature3 { text-decoration: underline; font-weight:bold; } /* Green */
+        .feature4 { 
+       
+        font-weight:bold;
+        text-decoration: underline;
+         } /* Yellow-orange */
+    </style>
+</head>
+<body>
+
+<!-- Brand Name -->
+<h1 class="brand-name">Anvick Packers</h1>
+<h5 style="color:rgb(52, 22, 134); margin-left:300px;font-weight:bold;margin-top:-10px;">Personalize Your Bags with Custom Branding</h5>
+
+<!-- Navigation -->
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+   
+</nav>
+
+
+
+ <div class="slider">
+        <div class="slide active">
+          <img src="first.jpeg" alt="Anvick Logo" class="brand-image">
+        </div>
+        <div class="slide">
+            <img src="second.jpeg" alt="Second Image">
+        </div>
+        <div class="slide">
+            <img src="third.jpg" alt="Second Image">
+        </div>
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+<section id="home">
+    <h1>Welcome to Anvick Packer</h1>
+    <p>Your Trusted Partner in Packaging Solutions</p>
+    <a href="#tagline" style="background: #0b9c62; padding: 10px 20px; border-radius: 5px; text-decoration: none; color: #333; font-weight: bold;"> Our Products</a>
+</section>
+
+
+
+
+
+ <div class="product-container">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <img src="fourth.jpeg" alt="Anvick Product - First Bag">
+            <div class="product-details">
+                <h2 class="product-title">Craft paper bag</h2>
+                <p class="product-description">High-quality leather bag with spacious compartments and a stylish design, perfect for daily use.</p>
+  
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <img src="fifth2.jpeg" alt="Anvick Product - Second Bag">
+            <div class="product-details">
+                <h2 class="product-title">Tybek Handbag</h2>
+                <p class="product-description">Elegant and durable handbag with a sleek look, ideal for formal occasions or office use.</p>
+               
+            </div>
+        </div>
+   
+  
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <img src="fifth3.jpeg" alt="Anvick Product - Second Bag">
+            <div class="product-details">
+                <h2 class="product-title">Cotton Handbag</h2>
+                <p class="product-description">Elegant and durable handbag with a sleek look, ideal for formal occasions or office use.</p>
+               
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="woven.jpeg" alt="Anvick Product - Second Bag">
+            <div class="product-details">
+                <h2 class="product-title">Woven</h2>
+                <p class="product-description">Elegant and durable handbag with a sleek look, ideal for formal occasions or office use.</p>
+               
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="woven2.jpeg" alt="Anvick Product - Second Bag">
+            <div class="product-details">
+                <h2 class="product-title">Woven Handbag</h2>
+                <p class="product-description">Elegant and durable handbag with a sleek look, ideal for formal occasions or office use.</p>
+              
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="ninth.jpeg" alt="Anvick Product - Second Bag">
+            <div class="product-details">
+                <h2 class="product-title">Shopping bag</h2>
+                <p class="product-description">Elegant and durable handbag with a sleek look, ideal for formal occasions or office use.</p>
+               
+            </div>
+        </div>
+         <!-- Product 5 -->
+           <div class="product-card">
+            <img src="clear.jpeg" alt="Anvick Product - Second Bag">
+            <div class="product-details">
+                <h2 class="product-title">Clear makeup Handbag</h2>
+                <p class="product-description">Elegant and durable handbag with a sleek look, ideal for formal occasions or office use.</p>
+               
+            </div>
+        </div>
+    </div>
+<br>
+<br>
+    
+    <div class="scrolling-text">
+        Custom Logos: Share your logo design with us, and we'll bring it to life on your selected bags with a variety of printing options to ensure a high-quality finish.
+    </div>
+    <br>
+    <br>
+    <h2 class="tagline" style="font-weight: bold;color: #004080;">Your Expert Shopping Bag Manufacturer</h2>
+    <ul class="features-list">
+            <li class="feature1">Over 10 years of shopping bag manufacturing experience</li>
+          <li class="feature2">All bag materials available</li>
+          <li class="feature3">Various printing options to meet your logo design</li>
+          <li class="feature4">Full support on your new bag design development</li>
+      </ul>
+
+
+  
+
+
+
+<!-- Hero Section -->
+
+
+<!-- About Us -->
+
+
+<!-- Services -->
+<section id="services" class="container">
+    <h2>Our Services</h2>
+    <ul>
+        <li><strong>Custom Packaging:</strong> Tailored packaging solutions for unique needs.</li>
+        <li><strong>Bulk Packaging:</strong> Efficient and cost-effective for large orders.</li>
+        <li><strong>Logistics Support:</strong> Seamless end-to-end delivery solutions.</li>
+    </ul>
+</section>
+<div class="product-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 300px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+    <img src="eight.jpg" alt="Anvick Product - First Bag" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+    <p>Mr pradeep</p>
+    <p>Marketing officer(North-Zone)</p>
+</div>
+<div class="scrolling-text">
+    Contact  Mr Predeedp for order   75320 66160
+ </div>
+
+<section class="customization-section">
+    <h2 class="section-title">Personalize Your Bags with Custom Branding</h2>
+   
+    
+    <ul class="customization-features">
+       
+        <li>Unique Lettering -: Add custom text in your chosen font and color for a personal touch or promotional messaging on your bags.</li>
+        <li>Multiple Printing Options -: We offer screen printing, heat transfer, embroidery, and more to achieve the look you envision.</li>
+        <li>Flexible Quantities  -: Whether you need a single custom bag or a bulk order, we can cater to all order sizes.</li>
+    </ul>
+    
+    <p class="cta-message">
+        Ready to create your personalized bags? Contact us</a> today to get started with our customization services!
+    </p>
+</section>
+
+
+<!-- Gallery -->
+<section id="gallery" class="container">
+    <h2 style="text-align: center;"> Our Manufaturing Process</h2>
+    <div class="gallery">
+        <figure>
+            <img src="stocking.jpeg" alt="Stocking" title="Stocking">
+            <figcaption>Stocking</figcaption>
+        </figure>
+        <figure>
+            <img src="colour.jpeg" alt="Coloring" title="Coloring">
+            <figcaption>Coloring</figcaption>
+        </figure>
+        <figure>
+            <img src="sewing.jpeg" alt="Sewing" title="Sewing">
+            <figcaption>Sewing</figcaption>
+        </figure>
+        <figure>
+            <img src="printing.jpg" alt="Printing" title="Printing">
+            <figcaption>Printing</figcaption>
+        </figure>
+        <figure>
+            <img src="packing.jpeg" alt="Packing" title="Packing">
+            <figcaption>Packing</figcaption>
+        </figure>
+    </div>
+    
+</section>
+<section id="contact" class="container">
+  <h3 style="text-align: center;color: blue; font-weight: bold;text-decoration-line:underline ;"> Call/whatsaap for order   75320 66160</h3>
+</section>
+<section id="about" class="container">
+<p>
+    At Anvick, we empower our customers to make their bags truly unique. Whether it’s for brand promotions, special events, or creating a personal style statement,
+
+we provide the option to add custom logos and lettering to your bags. Our team supports you in every step, from selecting the right materials to designing the perfect look.
+</p>
+</section>
+
+<section id="about" class="container">
+    <h2>About Us</h2>
+    <p>Avni Packer is a leading provider of high-quality packaging solutions. We cater to businesses of all sizes, delivering customized, reliable, and efficient packaging services. Our commitment to quality and innovation has made us a trusted name in the industry.</p>
+    <p>We Located at -  Sec 81 noida Uttar Pradesh</p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>Created by Mritunjay &copy; 2024 Avni Packer. All Rights Reserved </p>
+</footer>
+
+</body>
+
+
+
+
+
+
+
+
+
+ <script>
+        let slideIndex = 0; // Initialize slide index
+        const slides = document.getElementsByClassName("slide"); // Get all slides
+
+        // Function to show the current slide
+        function showSlides() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none"; // Hide all slides
+            }
+            slideIndex++;
+            if (slideIndex >= slides.length) {
+                slideIndex = 0; // Loop back to the first slide
+            }
+            slides[slideIndex].style.display = "block"; // Show the current slide
+        }
+
+        // Change slide every 3 seconds
+        setInterval(showSlides, 3000); // Change slide every 3 seconds
+
+        function changeSlide(n) {
+            slideIndex += n; // Change slide index
+            if (slideIndex >= slides.length) {
+                slideIndex = 0; // Loop back to the first slide
+            } else if (slideIndex < 0) {
+                slideIndex = slides.length - 1; // Loop to the last slide
+            }
+            showSlidesManually(); // Show the manually selected slide
+        }
+
+        function showSlidesManually() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none"; // Hide all slides
+            }
+            slides[slideIndex].style.display = "block"; // Show the selected slide
+        }
+
+        // Initialize the first slide
+        showSlides();
+    </script>
+</html>
+
